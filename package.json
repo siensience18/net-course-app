@@ -1,0 +1,17 @@
+{
+  "name": "net-course-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@highlightjs/cdn-assets": "^11.12.0",
+    "marked": "^15.0.12"
+  }
+}

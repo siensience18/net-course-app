@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru" data-ver="__VER__">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Курс по сетям</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css?v=__VER__">
+  <script>
+    (function () {
+      try {
+        var t = JSON.parse(localStorage.getItem('nc.theme'));
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+        var fs = JSON.parse(localStorage.getItem('nc.fontSize'));
+        if (fs) document.documentElement.style.setProperty('--fs', fs + 'px');
+      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+    })();
+  </script>
+  <!--VENDOR-->
+  <script src="app.js?v=__VER__" defer></script>
+</head>
+<body>
+  <div id="login" class="login" hidden>
+    <form class="login-card" id="login-form" autocomplete="on">
+      <div class="login-logo">
+        <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.9 8ZM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.6 13.6 0 0 1 12 4.04ZM4.26 14a8.2 8.2 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26Zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16Zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.7 15.7 0 0 0 8.03 8ZM12 19.96A13.6 13.6 0 0 1 10.09 16h3.82A13.6 13.6 0 0 1 12 19.96ZM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4Zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56ZM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.2 8.2 0 0 1 0 4h-3.38Z"/></svg>
+      </div>
+      <h1>Курс по сетям</h1>
+      <p class="login-sub">Войдите, чтобы продолжить обучение</p>
+      <label>Логин
+        <input id="login-user" name="username" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      </label>
+      <label>Пароль
+        <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <label class="login-remember"><input type="checkbox" id="login-remember" checked> Запомнить на этом устройстве</label>
+      <button type="submit" id="login-btn">Войти</button>
+      <p class="login-error" id="login-error" role="alert"></p>
+    </form>
+  </div>
+
+  <div id="boot" class="boot"><div class="spinner"></div></div>
+
+  <div id="app" hidden>
+    <div class="read-progress" id="read-progress"></div>
+    <header class="topbar">
+      <button class="icon-btn only-mobile" id="btn-menu" aria-label="Меню"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="#/"><span class="brand-dot"></span><span class="brand-text" id="brand-text">Курс по сетям</span></a>
+      <div class="topbar-title" id="topbar-title"></div>
+      <div class="topbar-actions">
+        <button class="search-trigger" id="btn-search" aria-label="Поиск"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="hide-mobile">Поиск</span><kbd class="hide-mobile">Ctrl K</kbd></button>
+        <button class="icon-btn hide-wide" id="btn-toc" aria-label="Содержание"><svg viewBox="0 0 24 24"><path d="M4 6h10M4 12h16M4 18h12"/></svg></button>
+        <button class="icon-btn" id="btn-settings" aria-label="Настройки"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></button>
+      </div>
+      <div class="settings-pop" id="settings-pop" hidden>
+        <div class="settings-row">
+          <span>Тема</span>
+          <div class="seg"><button data-theme-set="light">Светлая</button><button data-theme-set="dark">Тёмная</button></div>
+        </div>
+        <div class="settings-row">
+          <span>Размер текста</span>
+          <div class="seg"><button id="fs-dec" aria-label="Меньше">A−</button><button id="fs-reset">Сброс</button><button id="fs-inc" aria-label="Больше">A+</button></div>
+        </div>
+        <div class="settings-row">
+          <span>Прогресс</span>
+          <button class="link-btn danger" id="btn-reset-progress">Сбросить</button>
+        </div>
+        <div class="settings-row">
+          <span>Сессия</span>
+          <button class="link-btn" id="btn-logout">Выйти</button>
+        </div>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-progress" id="sidebar-progress"></div>
+      <nav id="nav"></nav>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main class="main">
+      <article class="content" id="content"></article>
+      <nav class="pager" id="pager"></nav>
+    </main>
+
+    <aside class="toc" id="toc">
+      <div class="toc-head">Содержание <button class="icon-btn only-sheet" id="btn-toc-close" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="toc-list" id="toc-list"></div>
+    </aside>
+
+    <button class="to-top" id="to-top" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></button>
+  </div>
+
+  <div class="search" id="search" hidden>
+    <div class="search-box">
+      <div class="search-input-row">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search-input" placeholder="Поиск по курсу и коду…" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button class="icon-btn" id="search-close" aria-label="Закрыть"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</body>
+</html>
